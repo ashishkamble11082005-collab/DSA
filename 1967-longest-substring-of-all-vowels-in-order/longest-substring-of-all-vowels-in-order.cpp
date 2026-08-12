@@ -1,29 +1,28 @@
-
 class Solution {
 public:
     int longestBeautifulSubstring(string word) {
-        int max_length = 0;
-        int vowels = 1;
-        int left = 0;
         int n = word.size();
+        int max_len = 0;
+        int current_len = 1;
+        int unique_vowels = 1;
 
-        for (int right = 0; right < n; right++) {
-            if (right > 0 && word[right] < word[right - 1]) {
-                vowels = 1;
-                left = right;  
-            }
-           
-            else if (right > 0 && word[right] > word[right - 1]) {
-                vowels++;
+        for (int i = 1; i < n; ++i) {
+            if (word[i] >= word[i - 1]) {
+                current_len++;
+                if (word[i] > word[i - 1]) {
+                    unique_vowels++;
+                }
+            } else {
+               
+                current_len = 1;
+                unique_vowels = 1;
             }
 
-            
-            if (word[left] == 'a' && vowels == 5) {
-                int current_window_len = right - left + 1;
-                max_length = max(max_length, current_window_len);
+            if (unique_vowels == 5) {
+                max_len = max(max_len, current_len);
             }
         }
 
-        return max_length;
+        return max_len;
     }
 };
