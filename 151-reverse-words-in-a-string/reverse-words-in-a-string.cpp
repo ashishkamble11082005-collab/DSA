@@ -8,7 +8,7 @@ public:
             if (ans == "") {
                 ans = word;
             } else {
-                ans = word + " " + ans; // place newer words in front
+                ans = word + " " + ans; 
             }
         }
 
